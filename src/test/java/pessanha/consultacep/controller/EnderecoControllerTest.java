@@ -36,14 +36,13 @@ class EnderecoControllerTest {
                         .content(cepJson))
                         .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("cep").value("01524000"))
-                .andExpect(jsonPath("rua").value("Praça da Sé"))
-                .andExpect(jsonPath("complemento").value("lado ímpar"))
-                .andExpect(jsonPath("bairro").value("Sé"))
+                .andExpect(jsonPath("cep").value("01524-000"))
+                .andExpect(jsonPath("rua").value("Rua da Independência"))
+                .andExpect(jsonPath("complemento").value("lado par"))
+                .andExpect(jsonPath("bairro").value("Cambuci"))
                 .andExpect(jsonPath("cidade").value("São Paulo"))
                 .andExpect(jsonPath("estado").value("SP"))
                 .andExpect(jsonPath("frete").value(7.85));
 
     }
-
 }
