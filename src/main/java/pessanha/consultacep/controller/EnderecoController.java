@@ -1,7 +1,6 @@
 package pessanha.consultacep.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,7 @@ import pessanha.consultacep.entities.EnderecoJson;
 
 @RestController
 @RequestMapping(value = "/v1/consulta-endereco")
-public class ConsultaController {
+public class EnderecoController {
 
     @PostMapping
     public ResponseEntity<EnderecoJson> consultaResponseEntity(@RequestBody CepRequestBody cepRequestBody) {
