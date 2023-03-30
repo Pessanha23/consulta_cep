@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pessanha.consultacep.entities.EnderecoJson;
 import pessanha.consultacep.entities.ViaCepJson;
+import pessanha.consultacep.entities.enums.RegiaoBrasil;
 import pessanha.consultacep.exception.NotFoundException;
 
 @Service
@@ -26,7 +27,12 @@ public class EnderecoService {
             enderecoJson.setBairro(viaCepJson.getBairro());
             enderecoJson.setCidade(viaCepJson.getLocalidade());
             enderecoJson.setEstado(viaCepJson.getUf());
-            enderecoJson.setFrete(7.85);
+
+            for (RegiaoBrasil regiao : RegiaoBrasil.values()) {
+                if (regiao.getSiglasEstados().contains(viaCepJson.getUf().toUpperCase())) {
+                    enderecoJson.setFrete(regiao.getFrete());
+                }
+            }
             return enderecoJson;
         } catch (Exception e) {
             throw new NotFoundException();
