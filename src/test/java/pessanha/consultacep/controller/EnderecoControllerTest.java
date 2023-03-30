@@ -26,7 +26,7 @@ class EnderecoControllerTest {
     public void deve_retornar_endereco_regiao_sudeste() throws Exception {
 
         CepRequestBody cepRequestBody = new CepRequestBody();
-        cepRequestBody.setCep("01524-000");
+        cepRequestBody.setCep("01524000");
 
         ObjectMapper objectMapper = new ObjectMapper();
         String cepJson = objectMapper.writeValueAsString(cepRequestBody);
@@ -139,6 +139,30 @@ class EnderecoControllerTest {
                 .andExpect(jsonPath("cidade").value("Manaus"))
                 .andExpect(jsonPath("estado").value("AM"))
                 .andExpect(jsonPath("frete").value(20.83));
+
+    }
+
+    @Test
+    public void deve_retornar_endereco_regiao_quando_cep_conter_espaco() throws Exception {
+
+        CepRequestBody cepRequestBody = new CepRequestBody();
+        cepRequestBody.setCep(" 01524 000");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String cepJson = objectMapper.writeValueAsString(cepRequestBody);
+
+        mockMvc.perform(MockMvcRequestBuilders.post(PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(cepJson))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("cep").value("01524-000"))
+                .andExpect(jsonPath("rua").value("Rua da Independência"))
+                .andExpect(jsonPath("complemento").value("lado par"))
+                .andExpect(jsonPath("bairro").value("Cambuci"))
+                .andExpect(jsonPath("cidade").value("São Paulo"))
+                .andExpect(jsonPath("estado").value("SP"))
+                .andExpect(jsonPath("frete").value(7.85));
 
     }
 }

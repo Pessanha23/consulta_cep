@@ -18,11 +18,8 @@ public class EnderecoController {
 
     @PostMapping
     public ResponseEntity<EnderecoJson> consultaResponseEntity(@RequestBody CepRequestBody cepRequestBody) {
-        String cep = cepRequestBody.getCep();
-        cep = cep.replace("-", "");
 
-        EnderecoJson responseEndereco = enderecoService.capturaBancodeDados(cep);
-
+        EnderecoJson responseEndereco = enderecoService.consultarCep(cepRequestBody.getCep());
 
         return ResponseEntity.ok().body(responseEndereco);
     }

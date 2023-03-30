@@ -14,13 +14,16 @@ public class EnderecoService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public EnderecoJson capturaBancodeDados(String cep){
+    public EnderecoJson consultarCep(String cep){
+        String cepFormatado = cep;
+        cepFormatado = cepFormatado.replace("-", "");
+        cepFormatado = cepFormatado.replaceAll(" ", "");
 
         EnderecoJson enderecoJson = new EnderecoJson();
         String url = "https://viacep.com.br/ws/{cep}/json/";
 
         try {
-            ViaCepJson viaCepJson = restTemplate.getForObject(url, ViaCepJson.class, cep);
+            ViaCepJson viaCepJson = restTemplate.getForObject(url, ViaCepJson.class, cepFormatado);
             enderecoJson.setCep(viaCepJson.getCep());
             enderecoJson.setRua(viaCepJson.getLogradouro());
             enderecoJson.setComplemento(viaCepJson.getComplemento());
