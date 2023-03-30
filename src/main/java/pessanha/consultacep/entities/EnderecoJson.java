@@ -1,39 +1,14 @@
 package pessanha.consultacep.entities;
 
-public class Consulta {
+public class EnderecoJson {
 
-    private Long id;
     private String cep;
     private String rua;
     private String complemento;
     private String bairro;
     private String cidade;
     private String estado;
-    private float frete;
-
-
-
-    public Consulta() {
-    }
-
-    public Consulta(Long id, String cep, String rua, String complemento, String bairro, String cidade, String estado, float frete) {
-        this.id = id;
-        this.cep = cep;
-        this.rua = rua;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.frete = frete;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private double frete;
 
     public String getCep() {
         return cep;
@@ -83,11 +58,11 @@ public class Consulta {
         this.estado = estado;
     }
 
-    public float getFrete() {
+    public double getFrete() {
         return frete;
     }
 
-    public void setFrete(float frete) {
+    public void setFrete(double frete) {
         this.frete = frete;
     }
 }
