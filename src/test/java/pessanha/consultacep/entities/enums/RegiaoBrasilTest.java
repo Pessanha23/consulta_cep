@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RegiaoBrasilTest {
+public class RegiaoBrasilTest {
     @Test
     void testRegioesBrasil() {
         assertEquals(20.83, RegiaoBrasil.NORTE.getFrete());

@@ -15,9 +15,8 @@ public class EnderecoService {
     private RestTemplate restTemplate;
 
     public EnderecoJson consultarCep(String cep){
-        String cepFormatado = cep;
-        cepFormatado = cepFormatado.replace("-", "");
-        cepFormatado = cepFormatado.replaceAll(" ", "");
+
+        String cepFormatado = formataCep(cep);
 
         EnderecoJson enderecoJson = new EnderecoJson();
         String url = "https://viacep.com.br/ws/{cep}/json/";
@@ -40,5 +39,12 @@ public class EnderecoService {
         } catch (Exception e) {
             throw new NotFoundException();
         }
+    }
+
+    public String formataCep(String cep){
+        String cepFormatado = cep;
+        cepFormatado = cepFormatado.replace("-", "");
+        cepFormatado = cepFormatado.replaceAll(" ", "");
+        return cepFormatado;
     }
 }
