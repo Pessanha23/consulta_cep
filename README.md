@@ -8,7 +8,8 @@ A idéia é construir uma API REST de consulta de endereço e cálculo de frete 
 - Java 11+  
 - Spring boot 3  
 - API REST Template   
-- Documentação Swagger
+- Documentação Swagger   
+- Docker file
 
 ## Por que essa stack?
 Utilizei essa Stack apenas para demonstrar o meu conhecimento em spring, Rest Template e docker.
@@ -17,6 +18,7 @@ Utilizei essa Stack apenas para demonstrar o meu conhecimento em spring, Rest Te
 100% coberto por testes de integrações, utilizando:  
 -  Teste unitário Junit5  
 -  Teste Integrado Mock mvc  
+![img_1.png](img_1.png)
 
 ## SWAGGER
 http://localhost:8080/swagger-ui/index.html
@@ -66,6 +68,8 @@ Response
     "message": "CEP NÃO ENCONTRADO"
 }
 ```
+
+## DOCKER
 
 
 
