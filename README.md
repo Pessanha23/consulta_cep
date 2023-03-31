@@ -70,6 +70,16 @@ Response
 ```
 
 ## DOCKER
+```
+mvn clean
+mvn package
+docker build -t consulta-cep .
+docker run -p 8080:8080 -d consulta-cep
+docker ps
+```
+
+
+
 
 
 
