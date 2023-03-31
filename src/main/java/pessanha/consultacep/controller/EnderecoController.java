@@ -18,9 +18,7 @@ public class EnderecoController {
 
     @PostMapping
     public ResponseEntity<EnderecoJson> consultaResponseEntity(@RequestBody CepRequestBody cepRequestBody) {
-
         EnderecoJson responseEndereco = enderecoService.consultarCep(cepRequestBody.getCep());
-
         return ResponseEntity.ok().body(responseEndereco);
     }
 

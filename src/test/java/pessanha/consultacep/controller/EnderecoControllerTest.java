@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import pessanha.consultacep.entities.CepRequestBody;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,7 +35,7 @@ public class EnderecoControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post(PATH)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(cepJson))
-                        .andDo(print())
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("cep").value("01524-000"))
                 .andExpect(jsonPath("rua").value("Rua da Independência"))
@@ -165,4 +166,23 @@ public class EnderecoControllerTest {
                 .andExpect(jsonPath("frete").value(7.85));
 
     }
+
+    @Test
+    public void deve_retornar_NotFoundException_quando_cep_nao_encontrado() throws Exception {
+
+        CepRequestBody cepRequestBody = new CepRequestBody();
+        cepRequestBody.setCep("01524999");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String cepJson = objectMapper.writeValueAsString(cepRequestBody);
+
+        mockMvc.perform(MockMvcRequestBuilders.post(PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(cepJson))
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("message").value("ERROR - CEP NAO ENCONTRADO"));
+
+    }
+
 }
