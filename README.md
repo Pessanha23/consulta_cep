@@ -22,6 +22,7 @@ Utilizei essa Stack apenas para demonstrar o meu conhecimento em spring, Rest Te
 
 ## SWAGGER
 http://localhost:8080/swagger-ui/index.html
+![img.png](img.png)
 
 ## Exemplos para testar
 ```
